@@ -99,13 +99,11 @@
                         console.log(data);
                         this.obtenerUsuarios();
 
-                        // Limpia los campos de entrada
                         this.nuevoUsuario.id_usuario = '';
                         this.nuevoUsuario.nombre = '';
                         this.nuevoUsuario.email = '';
                         this.nuevoUsuario.telefono = '';
 
-                        // Oculta el formulario
                         this.mostrarAgregar = false;
                     })
                     .catch(error => console.error('Error:', error));
