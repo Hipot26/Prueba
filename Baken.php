@@ -48,19 +48,7 @@ class UsuariosManager {
 
         return $usuarios;
     }
-
-    public function actualizarUsuario($id_usuario, $nombre, $email, $telefono) {
-        $sql = "UPDATE usuarios SET nombre=?, email=?, telefono=? WHERE id_usuario=?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sssi", $nombre, $email, $telefono, $id_usuario);
-
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    
     public function cerrarConexion() {
         $this->conn->close();
     }
@@ -88,6 +76,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo "Usuario agregado correctamente.";
         } else {
             echo "Error al agregar usuario.";
+        }
+    } else {
+        echo "Acción no válida para la solicitud POST.";
+    }
+    if (isset($data["accion"]) && $data["accion"] === "eliminar") {
+        $id_usuario = $data["id_usuario"];
+
+        if ($manager->eliminarUsuario($id_usuario)) {
+            echo "Usuario eliminado correctamente.";
+        } else {
+            echo "Error al eliminar usuario.";
         }
     } else {
         echo "Acción no válida para la solicitud POST.";
