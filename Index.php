@@ -32,6 +32,16 @@
         </div>
 
         <button @click="eliminarUsuario">Eliminar Usuario</button>
+
+        <div v-if="mostrarEliminar">
+            <h2>Eliminar Usuario</h2>
+            <form @submit.prevent="eliminarUsuario">
+                <label for="id_eliminarUsuario">Ingrese la identificacion del usuario a eliminar:</label>
+                <input type="number" id="id_eliminarUsuario" v-model="elimiUsuario.id_elusuario" required><br><br>
+                <button type="submit">Eliminar</button>
+            </form>
+        </div>
+
         <button @click="actualizarUsuario">Actualizar Usuario</button>
 
         <table v-if="usuarios.length > 0" border="1">
@@ -66,7 +76,8 @@
                     nombre: '',
                     email: '',
                     telefono: ''
-                }
+                },
+                id_elusuario
             },
             methods: {
                 obtenerUsuarios() {
@@ -77,7 +88,7 @@
                         })
                         .catch(error => console.error('Error:', error));
                 },
-                mostrarFormulario() {
+                mostrarFormularioAgregar() {
                     this.mostrarAgregar = !this.mostrarAgregar;
                 },
                 agregarNuevoUsuario() {
@@ -108,6 +119,9 @@
                     })
                     .catch(error => console.error('Error:', error));
                 },
+                mostrarFormularioEliminar() {
+                    this.mostrarEliminar = !this.mostrarEliminar;
+                }
                 eliminarUsuario() {
                     // Lógica para eliminar usuario, similar al método agregarNuevoUsuario
                 },
