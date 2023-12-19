@@ -96,8 +96,17 @@
                     })
                     .then(response => response.text())
                     .then(data => {
-                        console.log(data); // Manejo de la respuesta del servidor
-                        this.obtenerUsuarios(); // Actualiza la lista después de agregar
+                        console.log(data);
+                        this.obtenerUsuarios();
+
+                        // Limpia los campos de entrada
+                        this.nuevoUsuario.id_usuario = '';
+                        this.nuevoUsuario.nombre = '';
+                        this.nuevoUsuario.email = '';
+                        this.nuevoUsuario.telefono = '';
+
+                        // Oculta el formulario
+                        this.mostrarAgregar = false;
                     })
                     .catch(error => console.error('Error:', error));
                 },
